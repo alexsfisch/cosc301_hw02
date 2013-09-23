@@ -76,7 +76,6 @@ void list_append(const char *name, struct node **head) {
 	printf("%s\n","new2->next:");
 	printf("%s\n",new2->next->name);
 	new2->next->next=NULL;
-	//works if I don't free malloc
 	//free malloc
 	//free(new2);
 	//free(new);
@@ -171,7 +170,7 @@ int main(int argc, char **argv) {
     list_print_matches("test", head);	//works
     printf("%s\n","original list:");
     printlist(&head);
-    //list_append("hi", &head);		//memory allocation may be off
+    list_append("hi", &head);		// works
     //list_delete("test", &head);	//works
    // list_reverse(&head);	//works
 
