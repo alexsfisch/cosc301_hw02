@@ -76,9 +76,6 @@ void list_append(const char *name, struct node **head) {
 	printf("%s\n","new2->next:");
 	printf("%s\n",new2->next->name);
 	new2->next->next=NULL;
-	//free malloc
-	//free(new2);
-	//free(new);
 
 }
 
@@ -93,9 +90,9 @@ void list_reverse(struct node **head) {
 		nullNode->next = nullNode->next->next;
 	}
 
-	
 	*head=new;
 	free(new);
+	free(nullNode);
 
 
 }
@@ -139,9 +136,10 @@ void list_sort(struct node **head) {
 		}
 	}
 	*head=new;
-
+	free(following);
 }
 
+//used only for testing
 void printlist(struct node **head) {
 	struct node *new = (struct node*)malloc(sizeof(struct node));	
 	new=*head;
@@ -166,14 +164,14 @@ int main(int argc, char **argv) {
         printf("Next string to add: ");
         fflush(stdout);
     }
-    printf("%s\n","\n");
+
+    //testing purposes
     list_print_matches("test", head);	//works
     printf("%s\n","original list:");
     printlist(&head);
     list_append("hi", &head);		// works
-    //list_delete("test", &head);	//works
-   // list_reverse(&head);	//works
-
+    list_delete("test", &head);	//works
+    list_reverse(&head);	//works
     list_sort(&head);	//works
     printf("%s\n","new list:");
     printlist(&head);
